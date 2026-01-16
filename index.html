@@ -159,11 +159,11 @@
                 
                 <div class="h-8 w-px bg-gray-300 dark:bg-white/10 mx-2"></div>
 
-                <!-- MAP BUTTON (Vuelve a abrir Modal General) -->
-                <button onclick="openGeneralMap()" class="flex items-center gap-2 text-sm font-bold text-emerald-700 bg-emerald-50 border border-emerald-200 hover:bg-emerald-600 hover:text-white px-5 py-2.5 rounded-xl transition-all shadow-sm hover:shadow-emerald-500/30 hover:scale-105">
+                <!-- MAP BUTTON (ENLACE DIRECTO CORREGIDO) -->
+                <a href="https://www.google.com/maps/d/edit?mid=1HLbLlf1Gl4OuR6RwUd0zENjCmhoA4II&usp=sharing" target="_blank" class="flex items-center gap-2 text-sm font-bold text-emerald-700 bg-emerald-50 border border-emerald-200 hover:bg-emerald-600 hover:text-white px-5 py-2.5 rounded-xl transition-all shadow-sm hover:shadow-emerald-500/30 hover:scale-105">
                     <span class="material-symbols-outlined text-[20px]">map</span>
                     Mapa General
-                </button>
+                </a>
             </nav>
             
             <div class="flex items-center gap-3">
@@ -308,20 +308,6 @@
         </section>
     </main>
 
-    <!-- GENERAL MAP MODAL (GOOGLE MAPS) -->
-    <div id="generalMapModal" class="hidden fixed inset-0 z-[100] flex items-center justify-center p-4">
-        <div class="absolute inset-0 bg-black/60 backdrop-blur-sm" onclick="closeGeneralMap()"></div>
-        <div class="relative w-full max-w-5xl h-[80vh] glass-panel rounded-2xl flex flex-col shadow-2xl animate-in zoom-in-95 duration-200 bg-white">
-            <div class="flex items-center justify-between p-4 border-b border-white/10">
-                <h3 class="text-lg font-bold text-text-main flex items-center gap-2"><span class="material-symbols-outlined text-emerald-600">map</span> Mapa General</h3>
-                <button onclick="closeGeneralMap()" class="p-2 hover:bg-black/5 rounded-full"><span class="material-symbols-outlined">close</span></button>
-            </div>
-            <div class="flex-1 bg-gray-100 rounded-b-2xl overflow-hidden relative">
-                <iframe id="generalMapFrame" class="w-full h-full border-0" src="" allowfullscreen></iframe>
-            </div>
-        </div>
-    </div>
-
     <!-- DYNAMIC MAP MODAL (LEAFLET) -->
     <div id="dynamicMapModal" class="hidden fixed inset-0 z-[100] flex items-center justify-center p-4">
         <div class="absolute inset-0 bg-black/60 backdrop-blur-sm" onclick="closeDynamicMap()"></div>
@@ -341,9 +327,6 @@
 
     <script>
         const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxDMkP5NKfdb9xOjVBe20h7vff7KX4OR_8GKEsm42aszgq2ZgnOmXOX68pXSK0SB6Vw/exec';
-        // Enlace Embed con parámetros correctos (ehbc y noprof)
-        const GENERAL_MAP_URL = 'https://www.google.com/maps/d/embed?mid=1HLbLlf1Gl4OuR6RwUd0zENjCmhoA4II&ehbc=2E312F&noprof=1';
-        // URL al GeoJSON local
         const GEOJSON_URL = 'zonas.geojson'; 
 
         let globalData = [], uniqueDistricts = new Set(), selectedDistricts = new Set(), sectionMaps = {}; 
@@ -378,27 +361,19 @@
             else { document.body.classList.remove('bg-home'); document.body.classList.add('bg-content'); stopCarousel(); }
         }
 
-        // --- MAPAS (GENERAL Y DINÁMICO) ---
-        function openGeneralMap() {
-             const m = document.getElementById('generalMapModal');
-             const f = document.getElementById('generalMapFrame');
-             if (!f.src) f.src = GENERAL_MAP_URL;
-             m.classList.remove('hidden');
-             document.body.style.overflow = 'hidden';
-        }
-        function closeGeneralMap() {
-             document.getElementById('generalMapModal').classList.add('hidden');
-             document.body.style.overflow = '';
-        }
-
         async function openDynamicMap() {
             document.getElementById('dynamicMapModal').classList.remove('hidden');
             document.body.style.overflow = 'hidden';
             setTimeout(async () => {
-                if (!mapInstance) await initLeafletMap();
-                else { mapInstance.invalidateSize(); updateMapColors(); }
+                if (!mapInstance) {
+                    await initLeafletMap();
+                } else {
+                    mapInstance.invalidateSize();
+                    updateMapColors();
+                }
             }, 100);
         }
+
         function closeDynamicMap() {
             document.getElementById('dynamicMapModal').classList.add('hidden');
             document.body.style.overflow = '';
@@ -420,16 +395,21 @@
         }
 
         function styleFeature(feature) {
+            // CORRECCIÓN: Buscamos específicamente 'ID_Zona'
             const props = feature.properties;
-            const geoId = props.id || props.ID || props.Name || props.name || props.ZONA || props.zona || "";
+            const geoId = props.ID_Zona || props.id || props.Name || ""; 
             const cleanGeoId = String(geoId).trim();
+
             const zoneData = globalData.find(z => String(z.id).trim() === cleanGeoId);
             
-            let color = '#94a3b8', opacity = 0.4;
+            let color = '#94a3b8';
+            let opacity = 0.4;
+            
             if (zoneData) {
                 if (zoneData.assigned) { color = '#22c55e'; opacity = 0.6; }
                 else { color = '#f97316'; opacity = 0.6; }
             }
+
             return { fillColor: color, weight: 2, opacity: 1, color: 'white', dashArray: '3', fillOpacity: opacity };
         }
 
@@ -437,19 +417,22 @@
 
         function onEachFeature(feature, layer) {
              const props = feature.properties;
-             const geoId = props.id || props.ID || props.Name || props.name || props.ZONA || props.zona || "Sin ID";
+             const geoId = props.ID_Zona || props.id || props.Name || "Sin ID";
              const cleanGeoId = String(geoId).trim();
              const zoneData = globalData.find(z => String(z.id).trim() === cleanGeoId);
+             
              let popupContent = `<div class="font-sans p-1"><h3 class="font-bold text-lg border-b border-gray-200 pb-1 mb-2">Zona: ${cleanGeoId}</h3>`;
+             
              if (zoneData) {
                  const badge = zoneData.assigned ? `<span class="px-2 py-0.5 rounded-full bg-green-100 text-green-700 text-xs font-bold">ASIGNADA</span>` : `<span class="px-2 py-0.5 rounded-full bg-orange-100 text-orange-700 text-xs font-bold">PENDIENTE</span>`;
                  popupContent += `<div class="mb-2">${badge}</div><p class="text-sm"><strong>Brigadista:</strong> ${zoneData.brigadista || 'Sin asignar'}</p><p class="text-sm"><strong>Tel:</strong> ${zoneData.phone || '--'}</p><p class="text-xs text-gray-500 mt-2">Distrito: ${zoneData.district}</p>`;
              } else popupContent += `<p class="text-sm text-gray-500 italic">No hay datos en el Excel.</p>`;
+             
              popupContent += `</div>`;
              layer.bindPopup(popupContent);
         }
 
-        // --- LÓGICA DE DATOS Y TABLA (EXISTENTE) ---
+        // --- LÓGICA DE DATOS Y TABLA ---
         function renderDistrictsCarousel() {
             const container = document.getElementById('districtsContainer');
             container.innerHTML = '';
@@ -476,6 +459,11 @@
             }, 3000);
         }
         function stopCarousel() { clearInterval(carouselInterval); }
+        function openGeneralMap() {
+            // Updated to open in new tab for GitHub Pages compatibility
+            window.open('https://www.google.com/maps/d/edit?mid=1HLbLlf1Gl4OuR6RwUd0zENjCmhoA4II&usp=sharing', '_blank');
+        }
+        document.addEventListener('keydown', (e) => { if (e.key === "Escape") { closeDynamicMap(); } });
 
         async function fetchSheetData() {
             document.getElementById('loading-indicator').classList.remove('hidden');
@@ -562,7 +550,6 @@
                 document.getElementById('distritoArrow').style.transform = 'rotate(0deg)';
             }
         });
-        document.addEventListener('keydown', (e) => { if (e.key === "Escape") { closeGeneralMap(); closeDynamicMap(); } });
 
         function populateDistricts(dists) {
             const c = document.getElementById('distritosCheckboxContainer');
