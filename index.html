@@ -77,7 +77,7 @@
             100% { background-position: 0% 50%; }
         }
 
-        /* Estilo Glass Original (Más sólido - 95% - para legibilidad) */
+        /* Estilo Glass Original */
         .glass-panel {
             @apply backdrop-blur-xl bg-white/95 dark:bg-slate-900/95 border border-white/60 dark:border-white/10 shadow-2xl shadow-black/20 dark:shadow-black/40;
         }
@@ -159,7 +159,7 @@
                 
                 <div class="h-8 w-px bg-gray-300 dark:bg-white/10 mx-2"></div>
 
-                <!-- MAP BUTTON (Enlace externo directo para evitar errores de visualización) -->
+                <!-- MAP BUTTON -->
                 <a href="https://www.google.com/maps/d/edit?mid=1HLbLlf1Gl4OuR6RwUd0zENjCmhoA4II&usp=sharing" target="_blank" class="flex items-center gap-2 text-sm font-bold text-emerald-700 bg-emerald-50 border border-emerald-200 hover:bg-emerald-600 hover:text-white px-5 py-2.5 rounded-xl transition-all shadow-sm hover:shadow-emerald-500/30 hover:scale-105">
                     <span class="material-symbols-outlined text-[20px]">map</span>
                     Mapa General
@@ -263,11 +263,11 @@
         </div>
     </main>
 
-    <!-- METHODOLOGY & HISTORY VIEWS (Contenido Igual) -->
+    <!-- METHODOLOGY VIEW (TITULOS ESTANDARIZADOS) -->
     <main id="methodologyView" class="hidden flex-1 max-w-[1440px] mx-auto w-full px-4 md:px-8 py-8 flex flex-col gap-8">
         <section class="mb-4">
-            <div class="inline-block relative mb-6"><div class="title-backdrop"></div><h1 class="relative text-4xl font-black text-white drop-shadow-md">Metodología Geoestadística</h1></div>
-            <div class="glass-panel bg-white/95 p-6 rounded-2xl shadow-lg border border-white/60">
+            <h1 class="text-4xl font-black text-primary mb-6 drop-shadow-sm">Metodología Geoestadística Electoral</h1>
+            <div class="glass-panel p-6 rounded-2xl shadow-lg border border-white/60">
                 <div class="text-text-main mb-4"><pre class="preserve-whitespace font-sans text-sm md:text-base leading-relaxed text-text-main">
                      La metodología empleada para el análisis geoestadístico electoral es producto de explorar las distintas metodologías existentes y formar una propia.
 <b>
@@ -283,8 +283,8 @@
         </section>
         
         <section class="mb-4">
-             <div class="inline-block relative mb-6"><div class="title-backdrop opacity-80"></div><h2 class="relative text-3xl font-bold text-white drop-shadow-md">Indicadores Tradicionales</h2></div>
-             <div class="overflow-x-auto glass-panel bg-white/95 rounded-2xl shadow-lg border border-white/60">
+             <h2 class="text-3xl font-bold text-primary mb-6 drop-shadow-sm">Indicadores Tradicionales</h2>
+             <div class="overflow-x-auto glass-panel rounded-2xl shadow-lg border border-white/60">
                 <table class="min-w-full divide-y divide-gray-200">
                     <thead class="bg-primary/10 backdrop-blur-sm"><tr><th class="px-6 py-4 text-left text-xs font-bold text-primary-dark uppercase">Indicador</th><th class="px-6 py-4 text-left text-xs font-bold text-primary-dark uppercase">Qué mide</th><th class="px-6 py-4 text-left text-xs font-bold text-primary-dark uppercase">Ideal para</th></tr></thead>
                     <tbody class="divide-y divide-gray-200 bg-white/50"><tr class="hover:bg-black/5"><td class="px-6 py-4 font-bold text-primary-dark">HHI</td><td class="px-6 py-4 text-text-sub">Concentración</td><td class="px-6 py-4 text-text-sub">Identificar bastiones</td></tr><tr class="hover:bg-black/5"><td class="px-6 py-4 font-bold text-primary-dark">Nef</td><td class="px-6 py-4 text-text-sub">Número partidos efectivos</td><td class="px-6 py-4 text-text-sub">Pluralismo real</td></tr></tbody>
@@ -292,37 +292,56 @@
              </div>
         </section>
 
-        <!-- (Resto de secciones de Metodología: Fórmulas, Umbrales, Densidad, Prioridades, Simplificación) -->
+        <section class="mb-4">
+            <h2 class="text-3xl font-bold text-primary mb-6 drop-shadow-sm">Fórmulas Complementarias</h2>
+            <div class="overflow-x-auto glass-panel rounded-2xl shadow-lg border border-white/60">
+                <table class="min-w-full divide-y divide-gray-200">
+                    <thead class="bg-primary/10 backdrop-blur-sm"><tr><th class="px-6 py-4 text-left text-xs font-bold text-secondary uppercase">Índice</th><th class="px-6 py-4 text-left text-xs font-bold text-secondary uppercase">Origen</th><th class="px-6 py-4 text-left text-xs font-bold text-secondary uppercase">Qué mide</th></tr></thead>
+                    <tbody class="divide-y divide-gray-200 bg-white/50"><tr class="hover:bg-black/5"><td class="px-6 py-4 font-bold text-secondary">Shannon</td><td class="px-6 py-4 text-text-sub">Ecología</td><td class="px-6 py-4 text-text-sub">Diversidad del voto</td></tr></tbody>
+                </table>
+            </div>
+        </section>
+
         <section class="mb-4"><h2 class="text-3xl font-bold text-primary mb-6 drop-shadow-sm">Fórmulas Clave</h2><div class="grid md:grid-cols-3 gap-6"><div class="glass-panel bg-white/95 p-6 rounded-2xl"><h4 class="font-bold text-primary-dark">HHI</h4><p class="text-sm text-text-sub">Índice de concentración.</p></div></div></section>
         
+        <section class="mb-4">
+             <h2 class="text-3xl font-bold text-primary mb-6 drop-shadow-sm">Clasificación por Umbrales para PAN</h2>
+             <div class="glass-panel bg-white/95 rounded-2xl p-6 mb-8 border border-white/60"><p class="text-text-main text-lg">Sistema de clasificación desarrollado...</p></div>
+             <div class="grid md:grid-cols-2 gap-8">
+                 <div class="glass-panel rounded-2xl overflow-hidden"><div class="bg-blue-600 p-4 text-white"><h2 class="text-2xl font-bold">Cuando el PAN gana</h2></div><div class="p-6"><table class="min-w-full"><tbody><tr><td>...</td></tr></tbody></table></div></div>
+                 <div class="glass-panel rounded-2xl overflow-hidden"><div class="bg-violet-600 p-4 text-white"><h2 class="text-2xl font-bold">Cuando el PAN no gana</h2></div><div class="p-6"><table class="min-w-full"><tbody><tr><td>...</td></tr></tbody></table></div></div>
+             </div>
+             <div class="mt-12 glass-panel rounded-2xl p-8 border border-white/60"><h2 class="text-2xl font-bold text-primary mb-6">Interpretación de Escenarios</h2><div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8"><div class="glass-panel p-4 rounded-xl border-l-4 border-l-blue-600 bg-blue-50"><h3 class="font-bold text-blue-600">Aprobación Óptima</h3></div></div></div>
+        </section>
+
         <section class="mb-4">
             <h2 class="text-3xl font-bold text-primary mb-6 drop-shadow-sm">Densidad de Votación</h2>
             <div class="glass-panel bg-white/95 p-6 rounded-2xl shadow-lg border border-white/60 flex flex-col items-center">
                 <div class="w-full text-left mb-6">
                     <h3 class="text-xl font-bold text-text-main mb-2">Curva Normal de Densidad</h3>
-                    <p class="text-text-sub text-sm leading-relaxed">
-                        Todas las casillas tienen distintos números de listado nominal...
-                    </p>
+                    <p class="text-text-sub text-sm leading-relaxed">Todas las casillas tienen distintos números de listado nominal...</p>
                 </div>
                 <img src="https://i.imgur.com/cftJ4sW.png" onerror="this.src='https://i.imgur.com/cftJ4sW.jpg'" class="rounded-xl shadow-md max-w-full h-auto mb-8">
-                
                 <div class="overflow-x-auto w-full rounded-xl border border-gray-200">
-                    <table class="min-w-full divide-y divide-gray-200">
-                        <thead class="bg-primary/10"><tr><th class="px-6 py-4 text-left text-xs font-bold text-primary-dark uppercase">Densidad</th><th class="px-6 py-4 text-left text-xs font-bold text-primary-dark uppercase">Descripción</th><th class="px-6 py-4 text-left text-xs font-bold text-primary-dark uppercase">Frecuencia Edo</th><th class="px-6 py-4 text-left text-xs font-bold text-primary-dark uppercase">Frecuencia Jrz</th></tr></thead>
-                        <tbody class="divide-y divide-gray-200 bg-white/50">
-                            <tr class="hover:bg-black/5"><td class="px-6 py-4 font-bold text-primary-dark">Muy baja</td><td class="px-6 py-4 text-text-sub">de 0 a 99 votos</td><td class="px-6 py-4 text-text-sub">208</td><td class="px-6 py-4 text-text-sub">37</td></tr>
-                            <tr class="hover:bg-black/5"><td class="px-6 py-4 font-bold text-primary-dark">Baja</td><td class="px-6 py-4 text-text-sub">100 a 199</td><td class="px-6 py-4 text-text-sub">792</td><td class="px-6 py-4 text-text-sub">407</td></tr>
-                            <tr class="hover:bg-black/5"><td class="px-6 py-4 font-bold text-primary-dark">Media</td><td class="px-6 py-4 text-text-sub">200 a 349 votos</td><td class="px-6 py-4 text-text-sub">3,487</td><td class="px-6 py-4 text-text-sub">1470</td></tr>
-                            <tr class="hover:bg-black/5"><td class="px-6 py-4 font-bold text-primary-dark">Alta</td><td class="px-6 py-4 text-text-sub">350 a 499 votos</td><td class="px-6 py-4 text-text-sub">1,187</td><td class="px-6 py-4 text-text-sub">323</td></tr>
-                            <tr class="hover:bg-black/5"><td class="px-6 py-4 font-bold text-primary-dark">Muy alta</td><td class="px-6 py-4 text-text-sub">500 o más</td><td class="px-6 py-4 text-text-sub">119</td><td class="px-6 py-4 text-text-sub">7</td></tr>
-                        </tbody>
-                    </table>
+                    <table class="min-w-full divide-y divide-gray-200"><thead class="bg-primary/10"><tr><th class="px-6 py-4 text-left text-xs font-bold text-primary-dark uppercase">Densidad</th><th class="px-6 py-4 text-left text-xs font-bold text-primary-dark uppercase">Descripción</th></tr></thead><tbody class="divide-y divide-gray-200 bg-white/50"><tr><td class="px-6 py-4">Muy baja</td><td>0-99</td></tr></tbody></table>
                 </div>
             </div>
         </section>
 
-        <section class="mb-4"><h2 class="text-3xl font-bold text-primary mb-6">Orden de prioridades</h2><div class="glass-panel bg-white/95 p-6 rounded-2xl flex justify-center"><img src="https://i.imgur.com/Yjg2d0j.png" class="rounded-xl shadow-md max-w-full h-auto"></div></section>
-        <section class="mb-4"><div class="glass-panel bg-white/95 p-6 rounded-2xl flex justify-center"><img src="https://i.imgur.com/uE5HjYd.png" class="rounded-xl shadow-md max-w-full h-auto"></div></section>
+        <section class="mb-4">
+            <h2 class="text-3xl font-bold text-primary mb-6 drop-shadow-sm">Orden de prioridades</h2>
+            <div class="glass-panel bg-white/95 p-6 rounded-2xl flex flex-col items-center">
+                <div class="w-full text-left mb-6"><p class="text-text-sub">De los escenarios identificados...</p></div>
+                <img src="https://i.imgur.com/Yjg2d0j.png" class="rounded-xl shadow-md max-w-full h-auto">
+            </div>
+        </section>
+        
+        <section class="mb-4">
+            <div class="glass-panel bg-white/95 p-6 rounded-2xl flex flex-col items-center">
+                <div class="w-full text-left mb-6"><p class="text-text-sub">Y luego simplificamos el concepto...</p></div>
+                <img src="https://i.imgur.com/uE5HjYd.png" class="rounded-xl shadow-md max-w-full h-auto">
+            </div>
+        </section>
     </main>
 
     <main id="historyView" class="hidden flex-1 max-w-[1440px] mx-auto w-full px-4 md:px-8 py-8 flex flex-col gap-8">
